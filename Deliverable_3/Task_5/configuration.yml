@@ -1,0 +1,32 @@
+---
+- name: Configure the Server
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt cache and install NGINX
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Ensure NGINX is started and enabled at boot
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Deploy index.html with server hostname
+      ansible.builtin.copy:
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: "0644"
+        content: |
+          <!DOCTYPE html>
+          <html>
+            <head><title>{{ ansible_facts["hostname"] }}</title></head>
+            <body>
+              <h1>{{ ansible_facts["hostname"] }}</h1>
+            </body>
+          </html>
