@@ -191,7 +191,7 @@ The `RandoNet/` directory contains:
 
 ```bash
 cd ~/Cloud
-git clone https://github.com/<your-username>/subnets.git subnets-fork
+git clone https://github.com/Jacksonatohio/subnets.git subnets-fork
 ```
 
 18. Copy the RandoNet files into your fork.  Think about where in the subnets
